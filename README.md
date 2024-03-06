@@ -9,7 +9,7 @@ If you're seeing this, you've probably already done this step. Congrats!
 ```bash
 # create a new project in the current directory
 npm create svelte@latest c2cpayru
-# test 3
+# test 4
 
 ## Developing
 
