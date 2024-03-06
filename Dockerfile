@@ -1,11 +1,25 @@
-FROM node:18
+FROM node:19.7-alpine AS sk-build
+WORKDIR /usr/src/app
 
-ENV NODE_ENV development
+ARG TZ=Europe/Moscow
 
-WORKDIR /app
-COPY ["package.json","package-lock.json", "yarn.lock", "./"]
+COPY . /usr/src/app
+RUN apk --no-cache add curl tzdata
+RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN npm install
+RUN npm run build
 
-RUN yarn
-COPY . .
+FROM node:19.7-alpine
+WORKDIR /usr/src/app
+
+ARG TZ=Europe/Moscow
+RUN apk --no-cache add curl tzdata
+RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+COPY --from=sk-build /usr/src/app/package.json /usr/src/app/package.json
+COPY --from=sk-build /usr/src/app/package-lock.json /usr/src/app/package-lock.json
+
+COPY --from=sk-build /usr/src/app/build /usr/src/app/build
+
 EXPOSE 3000
-EXPOSE 24678
+CMD ["node", "build/index.js"]
