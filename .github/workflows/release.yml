@@ -16,7 +16,7 @@ on:
 
 env:
   # the target name of the image.
-  IMAGE_NAME: deploy-from-github
+  IMAGE_NAME: c2cpayru
 
 jobs:
   # Push image to GitHub Packages Container Registry.
