@@ -20,7 +20,7 @@ env:
 
 jobs:
   # Push image to GitHub Packages Container Registry.
-  push:
+  release:
     runs-on: ubuntu-latest
     permissions:
       packages: write

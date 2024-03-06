@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-caprover:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -20,7 +20,7 @@ jobs:
       - name: Deploy on CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
-          server: https://c2c-pay.ru
+          server: http://c2c-pay.ru
           app: 'c2cpayru'
           token: '${{ secrets.APP_TOKEN }}'
           image: 'ghcr.io/captainsvelte/c2cpayru:latest'
