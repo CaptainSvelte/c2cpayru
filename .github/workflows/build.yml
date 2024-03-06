@@ -31,7 +31,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: 'ghcr.io/captainsvelte/c2cpayru:latest'
+        tags: ${{ env.IMAGE_URL }}
 
     - name: Deploy Image to CapRrover
       uses: caprover/deploy-from-github@v1.1.2
@@ -39,4 +39,4 @@ jobs:
         server: "${{ secrets.CAPROVER_SERVER }}"
         app: "${{ secrets.APP_NAME }}"
         token: "${{ secrets.APP_TOKEN }}"
-        image: 'ghcr.io/captainsvelte/c2cpayru:latest'
+        image: ${{ env.IMAGE_URL }}
