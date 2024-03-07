@@ -54,4 +54,4 @@ jobs:
           server: https://c2c-pay.ru
           app: "${{ secrets.APP_NAME }}"
           token: "${{ secrets.APP_TOKEN }}"
-          image: ${{ env.IMAGE_URL }}
+          image: 'ghcr.io/captainsvelte/c2cpayru:latest'

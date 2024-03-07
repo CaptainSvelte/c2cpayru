@@ -43,8 +43,10 @@ jobs:
           outPath: deploy.tar
 
       - name: Deploy App to CapRover
-        uses: caprover/deploy-from-github@v1.0.1
+        uses: caprover/deploy-from-github@v1.1.2
         with:
           server: https://c2c-pay.ru
           app: '${{ secrets.APP_NAME }}'
           token: '${{ secrets.APP_TOKEN }}'
+          image: 'ghcr.io/captainsvelte/c2cpayru:latest'
+          
